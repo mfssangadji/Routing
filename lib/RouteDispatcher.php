@@ -114,6 +114,12 @@ class RouteDispatcher implements Dispatcher
 	 */
 	protected function resolve_route(Request $request, $normalized_path, array &$captured)
 	{
+		if (0)
+		{
+			$mapper = new RouteMapper($this->routes);
+			return $mapper->map($request->method, $normalized_path, $captured);
+		}
+
 		return $this->routes->find($normalized_path, $captured, $request->method);
 	}
 
