@@ -50,6 +50,25 @@ class Pattern
 	];
 
 	/**
+	 * Checks if the given string is a route pattern.
+	 *
+	 * @param string $pattern
+	 *
+	 * @return bool `true` if the given pattern is a route pattern, `false` otherwise.
+	 */
+	static public function is_pattern($pattern)
+	{
+		return (strpos($pattern, '<') !== false) || (strpos($pattern, ':') !== false) || (strpos($pattern, '*') !== false);
+	}
+
+	/**
+	 * Parsed patterns.
+	 *
+	 * @var array
+	 */
+	static protected $parsed = [];
+
+	/**
 	 * Parses a route pattern and returns an array of interleaved paths and parameters, the
 	 * parameter names and the regular expression for the specified pattern.
 	 *
@@ -57,8 +76,13 @@ class Pattern
 	 *
 	 * @return array
 	 */
-	static private function parse($pattern)
+	static public function parse($pattern)
 	{
+		if (isset(self::$parsed[$pattern]))
+		{
+			return self::$parsed[$pattern];
+		}
+
 		$catchall = false;
 
 		if ($pattern{strlen($pattern) - 1} == '*')
@@ -79,7 +103,7 @@ class Pattern
 
 		$regex .= '$#';
 
-		return [ $interleaved, $params, $regex ];
+		return self::$parsed[$pattern] = [ $interleaved, $params, $regex ];
 	}
 
 	/**
@@ -163,18 +187,9 @@ class Pattern
 	}
 
 	/**
-	 * Checks if the given string is a route pattern.
-	 *
-	 * @param string $pattern
-	 *
-	 * @return bool `true` if the given pattern is a route pattern, `false` otherwise.
+	 * @var Pattern[]
 	 */
-	static public function is_pattern($pattern)
-	{
-		return (strpos($pattern, '<') !== false) || (strpos($pattern, ':') !== false) || (strpos($pattern, '*') !== false);
-	}
-
-	static private $instances;
+	static protected $instances;
 
 	/**
 	 * Creates a {@link Pattern} instance from the specified pattern.
