@@ -25,7 +25,7 @@ class ActionTraitTest extends \PHPUnit_Framework_TestCase
 	{
 		$events = new EventCollection;
 
-		EventCollectionProvider::using(function() use ($events) {
+		EventCollectionProvider::define(function() use ($events) {
 
 			return $events;
 

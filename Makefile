@@ -1,7 +1,7 @@
 # customization
 
 PACKAGE_NAME = icanboogie/routing
-PACKAGE_VERSION = 3.0.0
+PACKAGE_VERSION = 4.0
 
 # do not edit the following lines
 
@@ -9,10 +9,10 @@ usage:
 	@echo "test:  Runs the test suite.\ndoc:   Creates the documentation.\nclean: Removes the documentation, the dependencies and the Composer files."
 
 vendor:
-	@composer install
+	@composer install --prefer-dist
 
 update:
-	@composer update
+	@composer update --prefer-dist
 
 autoload: vendor
 	@composer dump-autoload

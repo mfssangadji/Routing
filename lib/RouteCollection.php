@@ -14,6 +14,8 @@ namespace ICanBoogie\Routing;
 use ICanBoogie\HTTP\Request;
 use ICanBoogie\Prototype\MethodNotDefined;
 
+use function ICanBoogie\stable_sort;
+
 /**
  * A route collection.
  *
@@ -394,7 +396,7 @@ class RouteCollection implements \IteratorAggregate, \ArrayAccess, \Countable
 			}
 		}
 
-		\ICanBoogie\stable_sort($dynamic, function($v, $k) use($weights) {
+		stable_sort($dynamic, function($v, $k) use($weights) {
 
 			return -$weights[$k];
 

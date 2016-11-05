@@ -24,7 +24,7 @@ class ControllerTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->events = $events = new EventCollection;
 
-		EventCollectionProvider::using(function() use ($events) {
+		EventCollectionProvider::define(function() use ($events) {
 
 			return $events;
 
