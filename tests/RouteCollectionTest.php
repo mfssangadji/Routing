@@ -87,11 +87,14 @@ class RouteCollectionTest extends \PHPUnit_Framework_TestCase
 
 	public function test_define_route()
 	{
+		$test = $this;
 		$routes = new RouteCollection;
 		$dispatcher = new RouteDispatcher($routes);
-		$routes->any('/', function(Request $request) {
+		$routes->any('/', function() use ($test) {
 
-			$this->assertInstanceOf(Request::class, $request);
+			/* @var ClosureController */
+
+			$test->assertInstanceOf(Request::class, $this->request);
 
 			return "Hello world";
 

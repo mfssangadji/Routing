@@ -20,6 +20,11 @@ use ICanBoogie\Routing\ControllerTest\MySampleController;
 
 class ControllerTest extends \PHPUnit_Framework_TestCase
 {
+	/**
+	 * @var EventCollection
+	 */
+	private $events;
+
 	public function setUp()
 	{
 		$this->events = $events = new EventCollection;
@@ -134,17 +139,21 @@ class ControllerTest extends \PHPUnit_Framework_TestCase
 
 	public function test_closure()
 	{
+		$test = $this;
+
 		$routes = new RouteCollection([
 
 			'default' => [
 
 				'pattern' => '/blog/<year:\d{4}>-<month:\d{2}>-:slug.html',
-				'controller' => function(Request $request, $year, $month, $slug) {
+				'controller' => function($year, $month, $slug) use ($test) {
 
-					$this->assertInstanceOf(Request::class, $request);
-					$this->assertEquals(2014, $year);
-					$this->assertEquals(12, $month);
-					$this->assertEquals("my-awesome-post", $slug);
+					/* @var $this ClosureController */
+
+					$test->assertInstanceOf(Request::class, $this->request);
+					$test->assertEquals(2014, $year);
+					$test->assertEquals(12, $month);
+					$test->assertEquals("my-awesome-post", $slug);
 
 					return 'HERE';
 
