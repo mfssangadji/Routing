@@ -92,7 +92,7 @@ class RouteCollectionTest extends \PHPUnit_Framework_TestCase
 		$dispatcher = new RouteDispatcher($routes);
 		$routes->any('/', function() use ($test) {
 
-			/* @var ClosureController */
+			/* @var $this Controller */
 
 			$test->assertInstanceOf(Request::class, $this->request);
 
@@ -136,7 +136,7 @@ class RouteCollectionTest extends \PHPUnit_Framework_TestCase
 	{
 		$one_pattern = '/' . uniqid();
 		$one_controller = function() {};
-		$one_class = \ICanBoogie\Routing\RouteCollectionTest\MyRouteClass::class;
+		$one_class = RouteCollectionTest\MyRouteClass::class;
 
 		$routes = new RouteCollection([
 
@@ -512,13 +512,4 @@ class RouteCollectionTest extends \PHPUnit_Framework_TestCase
 		$this->assertFalse(isset($filtered_routes['articles:show']));
 		$this->assertTrue(isset($filtered_routes['admin:articles:index']));
 	}
-}
-
-namespace ICanBoogie\Routing\RouteCollectionTest;
-
-use ICanBoogie\Routing\Route;
-
-class MyRouteClass extends Route
-{
-
 }
