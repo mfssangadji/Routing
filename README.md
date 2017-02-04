@@ -93,17 +93,20 @@ provide a response, or replace the exception that will be thrown if the rescue f
 A route definition is an array, which may be created with the following keys:
 
 - `RouteDefinition::PATTERN`: The pattern of the URL.
-- `RouteDefinition::CONTROLLER`: The controller class and optional action, or a callable.
+- `RouteDefinition::CONTROLLER`: The controller class or a callable.
+- `RouteDefinition::ACTION`: An optional action of the controller. 
 - `RouteDefinition::ID`: The identifier of the route.
 - `RouteDefinition::VIA`: If the route needs to respond to one or more HTTP methods, e.g.
 `Request::METHOD_GET` or `[ Request::METHOD_PUT, Request::METHOD_PATCH ]`.
 Defaults: `Request::METHOD_GET`.
 - `RouteDefinition::LOCATION`: To redirect the route to another location.
-- `RouteDefinition::CONSTRUCTOR`: If the route should be instantiated from a class other than [Route][].
+- `RouteDefinition::CONSTRUCTOR`: If the route should be instantiated from a class other than
+[Route][].
 
-A route definition is considered valid when the `RouteDefinition::PATTERN` parameter is defined along one of
-`RouteDefinition::CONTROLLER` or `RouteDefinition::LOCATION`. [PatternNotDefined][] is thrown if `RouteDefinition::PATTERN` is missing, and
-[ControllerNotDefined][] is thrown if both `RouteDefinition::CONTROLLER` and `RouteDefinition::LOCATION` are missing.
+A route definition is considered valid when the `RouteDefinition::PATTERN` parameter is defined
+along one of `RouteDefinition::CONTROLLER` or `RouteDefinition::LOCATION`. [PatternNotDefined][] is
+thrown if `RouteDefinition::PATTERN` is missing, and [ControllerNotDefined][] is thrown if both
+`RouteDefinition::CONTROLLER` and `RouteDefinition::LOCATION` are missing.
 
 > **Note:** You can add any parameter you want to the route definition, they are used to create
 the route instance, which might be useful to provide additional information to a controller.
@@ -120,7 +123,7 @@ single route and extract its parameters. Three types of placeholder are availabl
 
 - Relaxed placeholder: Only the name of the parameter is specified, it matches anything until
 the following part. e.g. `/articles/:id/edit` where `:id` is the placeholder for
-the `id` parameter.
+the `RouteDefinition::ID` parameter.
  
 - Constrained placeholder: A regular expression is used to match the parameter value.
 e.g. `/articles/<id:\d+>/edit` where `<id:\d+>` is the placeholder for the `id` parameter
@@ -151,14 +154,12 @@ You can use them in any combination:
 
 ### Route controller
 
-The `controller` key specifies the callable to invoke, or the class name of a callable.
-The following value types are accepted:
+The `RouteDefinition::CONTROLLER` key specifies the callable to invoke, or the class name of a
+callable. An action can be specified with `RouteDefinition::ACTION` and if the callable uses
+[ActionTrait][] the call will be mapped automatically to the appropriate method.
 
-- A controller class: `ArticlesShowController`
-- A controller action: `ArticlesController#show`, where `ArticlesController` is
-the controller class, and `show` is the action.
-- A callable: `function() {}`, `new ArticlesShowController`, `ArticlesController::show`,
-`articles_controller_show`, …
+Controllers can also be defined as service references when the [icanboogie/service] package
+is used.
 
 
 
@@ -516,15 +517,6 @@ use ICanBoogie\Routing\RouteDefinition;
 
 return [
 
-	'contact' => [
-
-		RouteDefinition::PATTERN => '/contact',
-		RouteDefinition::CONTROLLER => AppController::class . '#contact'
-
-	],
-	
-	# or
-	
 	'contact' => [
 
 		RouteDefinition::PATTERN => '/contact',
@@ -927,5 +919,6 @@ The package is continuously tested by [Travis CI](http://about.travis-ci.org/).
 [RouteNotDefined]:                     http://api.icanboogie.org/routing/4.0/class-ICanBoogie.Routing.RouteNotDefined.html
 [ICanBoogie]:                          https://github.com/ICanBoogie/ICanBoogie
 [icanboogie/bind-routing]:             https://github.com/ICanBoogie/bind-routing
+[icanboogie/service]:                  https://github.com/ICanBoogie/service
 [icanboogie/view]:                     https://github.com/ICanBoogie/View
 [RESTful]:                             https://en.wikipedia.org/wiki/Representational_state_transfer
