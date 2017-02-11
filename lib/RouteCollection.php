@@ -87,7 +87,7 @@ class RouteCollection implements \IteratorAggregate, \ArrayAccess, \Countable
 	{
 		$method = strtoupper($method);
 
-		if ($method !== Request::METHOD_ANY && !in_array($method, Request::$methods))
+		if ($method !== Request::METHOD_ANY && !in_array($method, Request::METHODS))
 		{
 			throw new MethodNotDefined($method, $this);
 		}
