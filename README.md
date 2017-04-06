@@ -1,10 +1,9 @@
 # Routing
 
 [![Release](https://img.shields.io/packagist/v/icanboogie/routing.svg)](https://packagist.org/packages/icanboogie/routing)
-[![Build Status](https://img.shields.io/travis/ICanBoogie/Routing/master.svg)](http://travis-ci.org/ICanBoogie/Routing)
-[![HHVM](https://img.shields.io/hhvm/icanboogie/routing.svg)](http://hhvm.h4cc.de/package/icanboogie/routing)
-[![Code Quality](https://img.shields.io/scrutinizer/g/ICanBoogie/Routing/master.svg)](https://scrutinizer-ci.com/g/ICanBoogie/Routing)
-[![Code Coverage](https://img.shields.io/coveralls/ICanBoogie/Routing/master.svg)](https://coveralls.io/r/ICanBoogie/Routing)
+[![Build Status](https://img.shields.io/travis/ICanBoogie/Routing.svg)](http://travis-ci.org/ICanBoogie/Routing)
+[![Code Quality](https://img.shields.io/scrutinizer/g/ICanBoogie/Routing.svg)](https://scrutinizer-ci.com/g/ICanBoogie/Routing)
+[![Code Coverage](https://img.shields.io/coveralls/ICanBoogie/Routing.svg)](https://coveralls.io/r/ICanBoogie/Routing)
 [![Packagist](https://img.shields.io/packagist/dt/icanboogie/routing.svg)](https://packagist.org/packages/icanboogie/routing)
 
 The **icanboogie/routing** package handles URL rewriting in native PHP. A request is mapped
@@ -781,9 +780,9 @@ by a controller using [ActionTrait][] has an empty `action` property.
 
 The following helpers are available:
 
-- [contextualize](https://icanboogie.org/api/routing/latest/function-ICanBoogie.Routing.contextualize.html): Contextualize a pathname.
-- [decontextualize](https://icanboogie.org/api/routing/latest/function-ICanBoogie.Routing.decontextualize.html): Decontextualize a pathname.
-- [absolutize_url](https://icanboogie.org/api/routing/latest/function-ICanBoogie.Routing.absolutize_url.html): Absolutize an URL.
+- [contextualize](https://icanboogie.org/api/routing/master/function-ICanBoogie.Routing.contextualize.html): Contextualize a pathname.
+- [decontextualize](https://icanboogie.org/api/routing/master/function-ICanBoogie.Routing.decontextualize.html): Decontextualize a pathname.
+- [absolutize_url](https://icanboogie.org/api/routing/master/function-ICanBoogie.Routing.absolutize_url.html): Absolutize an URL.
 
 
 
@@ -879,8 +878,8 @@ The test suite is ran with the `make test` command. [PHPUnit](https://phpunit.de
 
 The package is continuously tested by [Travis CI](http://about.travis-ci.org/).
 
-[![Build Status](https://img.shields.io/travis/ICanBoogie/Routing/master.svg)](http://travis-ci.org/ICanBoogie/Routing)
-[![Code Coverage](https://img.shields.io/coveralls/ICanBoogie/Routing/master.svg)](https://coveralls.io/r/ICanBoogie/Routing)
+[![Build Status](https://img.shields.io/travis/ICanBoogie/Routing.svg)](http://travis-ci.org/ICanBoogie/Routing)
+[![Code Coverage](https://img.shields.io/coveralls/ICanBoogie/Routing.svg)](https://coveralls.io/r/ICanBoogie/Routing)
 
 
 
